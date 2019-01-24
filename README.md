@@ -8,4 +8,4 @@ The three location of interests are denoted by MapKit's MKPointAnnotation, which
 The show users location toggle is used to toggle the *locationManager*'s *startUpdatingLocation* and *MapKitView*'s *showsUserLocation*. 
 The application looks as follows.
 ___
-![PeerReview10](https://github.com/Ananta11/PeerReview8/raw/master/Common/Screenshot.png)
+![PeerReview10](https://github.com/Ananta11/PeerReview10/raw/master/Common/Screenshot.png)

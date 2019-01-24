@@ -10,10 +10,12 @@
 #import "MapKit/MapKit.h"
 @interface ViewController () <MKMapViewDelegate, CLLocationManagerDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapKit;
+
 @property (strong, nonatomic) MKPointAnnotation *Apple;
 @property (strong, nonatomic) MKPointAnnotation *Google;
 @property (strong, nonatomic) MKPointAnnotation *SquareEnix;
 @property (strong, nonatomic) MKPointAnnotation *Current;
+
 @property (weak, nonatomic) IBOutlet UISwitch *Switchin;
 @property (nonatomic, assign) BOOL mapMoving;
 @property (weak, nonatomic) IBOutlet UIButton *Centre;
@@ -32,6 +34,7 @@
     self.locationManager.delegate = self;
     self.mapMoving = NO;
     self.mapKit.delegate = self;
+    self.Centre.enabled = NO;
 }
 
 
@@ -48,11 +51,13 @@
     {
         self.mapKit.showsUserLocation = YES;
         [self.locationManager startUpdatingLocation];
+        self.Centre.enabled = YES;
     }
     else
     {
         self.mapKit.showsUserLocation = NO;
         [self.locationManager stopUpdatingLocation];
+        self.Centre.enabled = NO;
     }
 }
 
@@ -110,15 +115,19 @@
     {
         [self viewAnnotation: self.Current];
     }
+    NSLog(@"\nLocation Manager Working.");
 }
 
 - (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated
 {
     self.mapMoving = YES;
 }
+
 - (IBAction)RegionChanged:(id)sender
 {
     self.mapMoving = NO;
+    [self viewAnnotation:self.Current];
+    NSLog(@"Centre: %id", self.mapMoving);
 }
 
 @end
